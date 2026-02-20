@@ -1,0 +1,114 @@
+@host = https://localhost:5001
+
+### Get all recipes
+GET {{host}}/api/recipes
+
+### Search recipes by name
+GET {{host}}/api/recipes?searchTerm=carbonara
+
+### Search recipes by difficulty
+GET {{host}}/api/recipes?difficulty=1
+
+### Search recipes by max cooking time
+GET {{host}}/api/recipes?maxCookingTime=30
+
+### Search recipes with multiple criteria
+GET {{host}}/api/recipes?searchTerm=pasta&difficulty=1&maxCookingTime=25
+
+### Sort by preparation time (ascending)
+GET {{host}}/api/recipes?sortBy=PreparationTime&sortDirection=Asc
+
+### Sort by preparation time (descending)
+GET {{host}}/api/recipes?sortBy=PreparationTime&sortDirection=Desc
+
+### Sort by difficulty (ascending)
+GET {{host}}/api/recipes?sortBy=Difficulty&sortDirection=Asc
+
+### Paginate recipes (page 2, size 5)
+GET {{host}}/api/recipes?pageNumber=2&pageSize=5
+
+### Search, sort, and paginate
+GET {{host}}/api/recipes?searchTerm=pasta&sortBy=PreparationTime&sortDirection=Asc&pageNumber=1&pageSize=10
+
+### Get recipe by ID
+GET {{host}}/api/recipes/1
+
+### Get recipe statistics
+GET {{host}}/api/recipes/statistics/summary
+
+### Create a new recipe
+POST {{host}}/api/recipes
+Content-Type: application/json
+
+{
+  "name": "Spaghetti Carbonara",
+  "description": "Classic Italian pasta dish",
+  "cookingTimeMinutes": 20,
+  "preparationTimeMinutes": 10,
+  "servings": 4,
+  "difficulty": 1,
+  "cuisine": 0,
+  "ingredients": [
+    {
+      "name": "Spaghetti",
+      "quantity": 400,
+      "unit": "grams"
+    },
+    {
+      "name": "Eggs",
+      "quantity": 4,
+      "unit": "pieces"
+    },
+    {
+      "name": "Pancetta",
+      "quantity": 200,
+      "unit": "grams"
+    },
+    {
+      "name": "Parmesan cheese",
+      "quantity": 100,
+      "unit": "grams"
+    }
+  ],
+  "instructions": "1. Cook pasta according to package directions. 2. Fry pancetta until crispy. 3. Mix eggs and cheese. 4. Combine all ingredients while pasta is hot."
+}
+
+### Update recipe
+PUT {{host}}/api/recipes/1
+Content-Type: application/json
+
+{
+  "name": "Spaghetti Carbonara (Updated)",
+  "description": "Classic Italian pasta dish with a twist",
+  "cookingTimeMinutes": 25,
+  "preparationTimeMinutes": 15,
+  "servings": 6,
+  "difficulty": 1,
+  "cuisine": 0,
+  "ingredients": [
+    {
+      "name": "Spaghetti",
+      "quantity": 600,
+      "unit": "grams"
+    },
+    {
+      "name": "Eggs",
+      "quantity": 6,
+      "unit": "pieces"
+    },
+    {
+      "name": "Pancetta",
+      "quantity": 300,
+      "unit": "grams"
+    },
+    {
+      "name": "Parmesan cheese",
+      "quantity": 150,
+      "unit": "grams"
+    }
+  ],
+  "instructions": "1. Cook pasta al dente. 2. Fry pancetta until crispy. 3. Mix eggs and cheese. 4. Combine all ingredients while pasta is hot. 5. Add black pepper to taste."
+}
+
+### Delete recipe
+DELETE {{host}}/api/recipes/1
